@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="wrap_content"
+                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                   app:cardCornerRadius="20dp">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp" tools:srcCompat="@tools:sample/avatars"
+                android:id="@+id/previewImage" android:layout_weight="1"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_weight="1" android:gravity="center|top">
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/ItemNamePreview" android:gravity="center"
+                    android:layout_margin="15dp"/>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:gravity="center">
+                <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="fill_parent" tools:srcCompat="@drawable/ic_substract_circle"
+                        android:id="@+id/previewSubstract" android:layout_weight="1"/>
+                <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/previewCount" android:layout_weight="1"
+                        android:gravity="center"/>
+                <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="fill_parent" tools:srcCompat="@drawable/ic_add_circle"
+                        android:id="@+id/previewAdd" android:layout_weight="1"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
