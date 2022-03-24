@@ -2,22 +2,22 @@ package com.example.rachasevo.ui.listado
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.example.rachasevo.R
+import com.example.rachasevo.Intercambio
 import com.example.rachasevo.baseDeDatos.BaseDeDatos
-import com.example.rachasevo.databinding.FragmentListadoBinding
 import com.example.rachasevo.baseDeDatos.model.Item
+import com.example.rachasevo.databinding.FragmentListadoBinding
+import com.example.rachasevo.ui.ViewNewFragmentHolder
+import com.example.rachasevo.ui.nuevo.NewItem
 
 class ListadoFragment : Fragment(),EditCounter {
 
@@ -29,7 +29,7 @@ class ListadoFragment : Fragment(),EditCounter {
         super.onCreate(savedInstanceState)
         db = activity?.let { Room.databaseBuilder(it,BaseDeDatos::class.java,"listas").allowMainThreadQueries().build() }!!
         items = db.itemDao().getAllItems()
-        if(items.isEmpty()) items = listOf(Item(12,"Defecto","",0,false))
+        if(items.isEmpty()) items = listOf(Item("Defecto","",0,false))
     }
 
     override fun onCreateView(
@@ -46,7 +46,10 @@ class ListadoFragment : Fragment(),EditCounter {
     }
 
     private fun onClick(){
-        binding.newItem.setOnClickListener { toaster("hola") }
+        binding.newItem.setOnClickListener {
+            startNewActivity(NewItem())
+            activity?.finish()
+        }
     }
 
     private fun toaster(text:String) = Toast.makeText(activity,text,Toast.LENGTH_SHORT).show()
@@ -72,5 +75,10 @@ class ListadoFragment : Fragment(),EditCounter {
     override fun onResume() {
         super.onResume()
         activity?.let { setAdapter(it) }
+    }
+
+    fun startNewActivity(fragment:Fragment){
+        Intercambio.fragento = fragment
+        startActivity(Intent(activity,ViewNewFragmentHolder::class.java))
     }
 }

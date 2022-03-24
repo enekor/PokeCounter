@@ -1,7 +1,5 @@
 package com.example.rachasevo.ui.listado
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,7 @@ import com.example.rachasevo.R
 import com.example.rachasevo.baseDeDatos.model.Item
 import com.example.rachasevo.ui.viewItem.ViewItem
 
-class Adaptador(lista:List<Item>, counterEdit:EditCounter,fragmento: ListadoFragment): RecyclerView.Adapter<Adaptador.ViewHolder>() {
+class Adaptador(lista:List<Item>, counterEdit:EditCounter, fragmento: ListadoFragment): RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
     val items = lista
     val clicker = counterEdit
@@ -47,9 +45,11 @@ class Adaptador(lista:List<Item>, counterEdit:EditCounter,fragmento: ListadoFrag
         private fun click(){
             add.setOnClickListener { clicker.editCounter(absoluteAdapterPosition,'+',counter) }
             substract.setOnClickListener { clicker.editCounter(absoluteAdapterPosition,'-',counter) }
+
             imagen.setOnClickListener{
                 Intercambio.item = items[absoluteAdapterPosition]
-                fragment.startActivity(Intent(fragment.activity,ViewItem::class.java))
+                fragment.startNewActivity(ViewItem())
+                fragment.activity?.finish()
             }
         }
     }
@@ -60,7 +60,7 @@ class Adaptador(lista:List<Item>, counterEdit:EditCounter,fragmento: ListadoFrag
     }
 
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
-        holder.name.setText(items[i].name)
+        holder.name.setText(items[i].nombre)
         holder.counter.setText(items[i].contador.toString())
     }
 

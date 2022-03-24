@@ -5,36 +5,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.example.rachasevo.Intercambio
 import com.example.rachasevo.R
 import com.example.rachasevo.baseDeDatos.BaseDeDatos
 import com.example.rachasevo.baseDeDatos.model.Item
 import com.example.rachasevo.databinding.FragmentViewItemBinding
-import kotlin.properties.Delegates
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ViewItem.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ViewItem : AppCompatActivity() {
+class ViewItem : Fragment() {
 
     private lateinit var binding:FragmentViewItemBinding
-    private lateinit var item:Item
+    private lateinit var item: Item
     private var contador:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        item = Intercambio.item!!
+        item = Intercambio.item
         contador = item.contador
 
-        binding = FragmentViewItemBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = FragmentViewItemBinding.inflate(inflater,container,false)
 
         initComponents()
         onClick()
+
+        return binding.root
     }
 
 
@@ -53,7 +55,7 @@ class ViewItem : AppCompatActivity() {
     }
 
     private fun initComponents(){
-        binding.namePreview.text = item.name
+        binding.namePreview.text = item.nombre
         binding.counterView.text = contador.toString()
         binding.addButton.setImageResource(R.drawable.ic_add_circle_green)
         binding.removeButton.setImageResource(R.drawable.ic_substract_circle_red)
@@ -62,7 +64,7 @@ class ViewItem : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        val db = Room.databaseBuilder(this,BaseDeDatos::class.java,"listas").allowMainThreadQueries().build()
+        val db = activity?.let { Room.databaseBuilder(it,BaseDeDatos::class.java,"listas").allowMainThreadQueries().build() }!!
         db.itemDao().insertItem(Intercambio.item!!)
     }
 }
