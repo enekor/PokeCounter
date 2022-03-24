@@ -22,16 +22,14 @@ import com.example.rachasevo.baseDeDatos.model.Item
 class ListadoFragment : Fragment(),EditCounter {
 
     private lateinit var binding:FragmentListadoBinding
-    lateinit var items:List<Item>
-    lateinit var db:RoomDatabase
+    private lateinit var items:List<Item>
+    private lateinit var db:BaseDeDatos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activity?.let{
-            db = Room.databaseBuilder(it,BaseDeDatos::class.java,"listado").build()
-        }
-
-        items = db.
+        db = activity?.let { Room.databaseBuilder(it,BaseDeDatos::class.java,"listas").allowMainThreadQueries().build() }!!
+        items = db.itemDao().getAllItems()
+        if(items.isEmpty()) items = listOf(Item(12,"Defecto","",0,false))
     }
 
     override fun onCreateView(
@@ -54,7 +52,7 @@ class ListadoFragment : Fragment(),EditCounter {
     private fun toaster(text:String) = Toast.makeText(activity,text,Toast.LENGTH_SHORT).show()
 
     private fun setAdapter(contexto:Context){
-        val adaptador = Adaptador(contexto, items,this)
+        val adaptador = Adaptador(items,this,this)
         binding.listadoRecycler.adapter = adaptador
     }
 
@@ -67,6 +65,8 @@ class ListadoFragment : Fragment(),EditCounter {
                 items[posicion].contador-1
 
         texto.text = ""+items[posicion].contador
+
+        db.itemDao().insertItem(items[posicion])
     }
 
     override fun onResume() {

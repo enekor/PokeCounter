@@ -11,7 +11,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.room.Room
+import com.example.rachasevo.baseDeDatos.BaseDeDatos
 import com.example.rachasevo.databinding.ActivityMainBinding
+import com.example.rachasevo.ui.viewItem.ViewItem
 
 class MainActivity : AppCompatActivity() {
 
