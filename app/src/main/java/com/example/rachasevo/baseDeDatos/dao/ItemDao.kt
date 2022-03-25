@@ -10,7 +10,7 @@ import com.example.rachasevo.baseDeDatos.model.Item
 @Dao
 interface ItemDao {
 
-    @Insert(onConflict = REPLACE)
+    @Insert()
     fun insertItem(item: Item)
 
     @Query("Select * from item")
@@ -18,4 +18,7 @@ interface ItemDao {
 
     @Delete
     fun deleteItem(item:Item)
+
+    @Query("update Item set contador=:contador where id=:id")
+    fun updateCounter(contador:Int,id:Int)
 }

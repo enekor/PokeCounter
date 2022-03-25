@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -52,24 +53,23 @@ class ListadoFragment : Fragment(),EditCounter {
         }
     }
 
-    private fun toaster(text:String) = Toast.makeText(activity,text,Toast.LENGTH_SHORT).show()
-
     private fun setAdapter(contexto:Context){
         val adaptador = Adaptador(items,this,this)
         binding.listadoRecycler.adapter = adaptador
     }
 
-    @SuppressLint("SetTextI18n")
     override fun editCounter(posicion: Int, ecuacion: Char, texto: TextView) {
+
         items[posicion].contador =
             if (ecuacion=='+')
                 items[posicion].contador+1
             else
                 items[posicion].contador-1
 
-        texto.text = ""+items[posicion].contador
+        texto.text = items[posicion].contador.toString()
+        Log.i("info",items[posicion].contador.toString())
 
-        db.itemDao().insertItem(items[posicion])
+        db.itemDao().updateCounter(items[posicion].contador,items[posicion].id)
     }
 
     override fun onResume() {

@@ -20,13 +20,9 @@ import com.example.rachasevo.databinding.FragmentViewItemBinding
 class ViewItem : Fragment() {
 
     private lateinit var binding:FragmentViewItemBinding
-    private lateinit var item: Item
-    private var contador:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        item = Intercambio.item
-        contador = item.contador
 
     }
 
@@ -42,21 +38,19 @@ class ViewItem : Fragment() {
 
     private fun onClick(){
         binding.addButton.setOnClickListener{
-            contador+=binding.howMuchAdd.text.toString().toInt()
-            binding.counterView.text = contador.toString()
-            Intercambio.item?.contador = contador
+            Intercambio.item.contador = Intercambio.item.contador+binding.howMuchAdd.text.toString().toInt()
+            binding.counterView.text = Intercambio.item.contador.toString()
         }
 
         binding.removeButton.setOnClickListener{
-            contador-=binding.howMuchAdd.text.toString().toInt()
-            binding.counterView.text = contador.toString()
-            Intercambio.item?.contador = contador
+            Intercambio.item.contador = Intercambio.item.contador-binding.howMuchAdd.text.toString().toInt()
+            binding.counterView.text = Intercambio.item.contador.toString()
         }
     }
 
     private fun initComponents(){
-        binding.namePreview.text = item.nombre
-        binding.counterView.text = contador.toString()
+        binding.namePreview.text = Intercambio.item.nombre
+        binding.counterView.text = Intercambio.item.contador.toString()
         binding.addButton.setImageResource(R.drawable.ic_add_circle_green)
         binding.removeButton.setImageResource(R.drawable.ic_substract_circle_red)
         binding.imagenView.setImageResource(R.drawable.ic_launcher_foreground)
@@ -65,6 +59,6 @@ class ViewItem : Fragment() {
     override fun onPause() {
         super.onPause()
         val db = activity?.let { Room.databaseBuilder(it,BaseDeDatos::class.java,"listas").allowMainThreadQueries().build() }!!
-        db.itemDao().insertItem(Intercambio.item!!)
+        db.itemDao().updateCounter(Intercambio.item.contador,Intercambio.item.id)
     }
 }
