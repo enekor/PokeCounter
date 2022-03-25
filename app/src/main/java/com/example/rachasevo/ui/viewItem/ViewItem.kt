@@ -11,6 +11,7 @@ import com.example.rachasevo.R
 import com.example.rachasevo.baseDeDatos.BaseDeDatos
 import com.example.rachasevo.baseDeDatos.model.Item
 import com.example.rachasevo.databinding.FragmentViewItemBinding
+import com.example.rachasevo.mapper.UriMapper
 
 /**
  * A simple [Fragment] subclass.
@@ -53,7 +54,13 @@ class ViewItem : Fragment() {
         binding.counterView.text = Intercambio.item.contador.toString()
         binding.addButton.setImageResource(R.drawable.ic_add_circle_green)
         binding.removeButton.setImageResource(R.drawable.ic_substract_circle_red)
-        binding.imagenView.setImageResource(R.drawable.ic_launcher_foreground)
+
+        if(Intercambio.item.imagen!=""){
+            binding.imagenView.setImageURI(UriMapper.stringToUri(Intercambio.item.imagen))
+        }else{
+            binding.imagenView.setImageResource(R.drawable.ic_launcher_foreground)
+        }
+
     }
 
     override fun onPause() {

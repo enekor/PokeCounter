@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rachasevo.Intercambio
 import com.example.rachasevo.R
 import com.example.rachasevo.baseDeDatos.model.Item
+import com.example.rachasevo.mapper.UriMapper
 import com.example.rachasevo.ui.viewItem.ViewItem
 
 class Adaptador(lista:List<Item>, counterEdit:EditCounter, fragmento: ListadoFragment): RecyclerView.Adapter<Adaptador.ViewHolder>() {
@@ -62,6 +63,12 @@ class Adaptador(lista:List<Item>, counterEdit:EditCounter, fragmento: ListadoFra
     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
         holder.name.setText(items[i].nombre)
         holder.counter.setText(items[i].contador.toString())
+
+        if(items[i].imagen !=""){
+            holder.imagen.setImageURI(UriMapper.stringToUri(items[i].imagen))
+        }else{
+            holder.imagen.setImageResource(R.drawable.ic_launcher_foreground)
+        }
     }
 
     override fun getItemCount():Int = items.size
