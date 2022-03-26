@@ -14,7 +14,7 @@ interface ItemDao {
     fun insertItem(item: Item)
 
     @Query("Select * from item")
-    fun getAllItems():List<Item>
+    fun getAllItems():MutableList<Item>
 
     @Delete
     fun deleteItem(item:Item)

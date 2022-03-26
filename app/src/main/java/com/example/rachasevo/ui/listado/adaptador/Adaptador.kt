@@ -1,5 +1,6 @@
-package com.example.rachasevo.ui.listado
+package com.example.rachasevo.ui.listado.adaptador
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +11,17 @@ import com.example.rachasevo.Intercambio
 import com.example.rachasevo.R
 import com.example.rachasevo.baseDeDatos.model.Item
 import com.example.rachasevo.mapper.UriMapper
+import com.example.rachasevo.ui.listado.EditCounter
+import com.example.rachasevo.ui.listado.ListadoFragment
 import com.example.rachasevo.ui.viewItem.ViewItem
 
-class Adaptador(lista:List<Item>, counterEdit:EditCounter, fragmento: ListadoFragment): RecyclerView.Adapter<Adaptador.ViewHolder>() {
+class Adaptador(lista:MutableList<Item>, counterEdit: EditCounter, fragmento: ListadoFragment): RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
     val items = lista
     val clicker = counterEdit
     val fragment = fragmento
 
-    open class ViewHolder(v: View, counterEdit:EditCounter, itemList:List<Item>, fragmento: ListadoFragment) : RecyclerView.ViewHolder(v) {
+    open class ViewHolder(v: View, counterEdit: EditCounter, itemList:List<Item>, fragmento: ListadoFragment) : RecyclerView.ViewHolder(v) {
 
         val imagen:ImageView
         val add:ImageView
@@ -64,6 +67,7 @@ class Adaptador(lista:List<Item>, counterEdit:EditCounter, fragmento: ListadoFra
         holder.name.setText(items[i].nombre)
         holder.counter.setText(items[i].contador.toString())
 
+        Log.i("info",items[i].imagen)
         if(items[i].imagen !=""){
             holder.imagen.setImageURI(UriMapper.stringToUri(items[i].imagen))
         }else{
