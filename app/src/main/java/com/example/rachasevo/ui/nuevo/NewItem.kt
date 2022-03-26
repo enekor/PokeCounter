@@ -2,15 +2,13 @@ package com.example.rachasevo.ui.nuevo
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.room.Room
 import com.example.rachasevo.Intercambio
 import com.example.rachasevo.R
@@ -73,7 +71,8 @@ class NewItem : Fragment() {
         if(imageUri !=Uri.EMPTY) UriMapper.uriToString(imageUri) else ""
 
     private fun openGallery(){
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.setType("image/*")
         startActivityForResult(intent,REQUEST_CODE)
     }
 
