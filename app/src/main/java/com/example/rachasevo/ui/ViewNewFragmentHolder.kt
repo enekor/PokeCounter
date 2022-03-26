@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.transaction
 import com.example.rachasevo.Intercambio
@@ -16,6 +17,7 @@ class ViewNewFragmentHolder : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i("inicio","hola")
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_view_new_fragment_holder)
 
         Intercambio.fragento?.let { changeFragment(it) }

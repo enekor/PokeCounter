@@ -23,4 +23,11 @@
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
+    <style name="Theme.RachasEvo.NoNameMenu" parent="Theme.RachasEvo">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="Theme.RachasEvo.NoNameMenuNoActionBar" parent="Theme.RachasEvo.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>

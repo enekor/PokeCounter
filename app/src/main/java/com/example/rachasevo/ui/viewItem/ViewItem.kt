@@ -40,18 +40,18 @@ class ViewItem : Fragment() {
     private fun onClick(){
         binding.addButton.setOnClickListener{
             Intercambio.item.contador = Intercambio.item.contador+binding.howMuchAdd.text.toString().toInt()
-            binding.counterView.text = Intercambio.item.contador.toString()
+            binding.counterView.text = "Contador: ${Intercambio.item.contador.toString()}"
         }
 
         binding.removeButton.setOnClickListener{
             Intercambio.item.contador = Intercambio.item.contador-binding.howMuchAdd.text.toString().toInt()
-            binding.counterView.text = Intercambio.item.contador.toString()
+            binding.counterView.text = "Contador: ${Intercambio.item.contador.toString()}"
         }
     }
 
     private fun initComponents(){
         binding.namePreview.text = Intercambio.item.nombre
-        binding.counterView.text = Intercambio.item.contador.toString()
+        binding.counterView.text = "Contador: ${Intercambio.item.contador.toString()}"
         binding.addButton.setImageResource(R.drawable.ic_add_circle_green)
         binding.removeButton.setImageResource(R.drawable.ic_substract_circle_red)
 

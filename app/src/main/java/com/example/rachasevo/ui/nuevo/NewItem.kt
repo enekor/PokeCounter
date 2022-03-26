@@ -60,8 +60,7 @@ class NewItem : Fragment() {
 
             Toast.makeText(activity, "Elemento guardado con exito", Toast.LENGTH_SHORT).show()
 
-            Intercambio.item = item
-            Intercambio.fragmentHolder?.changeFragment(ViewItem())
+            activity!!.onBackPressed()
         }else{
             Toast.makeText(activity, "No se puede guardar un elemento sin nombre", Toast.LENGTH_SHORT).show()
         }

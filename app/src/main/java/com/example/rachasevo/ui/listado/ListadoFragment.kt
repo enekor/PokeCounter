@@ -111,6 +111,7 @@ class ListadoFragment : Fragment(),EditCounter {
         val dialog = AlertDialog.Builder(activity)
             .setMessage("Desea borrar el contador?")
             .setNegativeButton("No") { view, _ ->
+                setAdapter()
                 view.dismiss()
             }
             .setPositiveButton("Si") { view, _ ->
