@@ -1,11 +1,15 @@
 package com.example.rachasevo.ui.listado.adaptador
 
+import android.content.ContentResolver
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rachasevo.Intercambio
 import com.example.rachasevo.R
@@ -14,6 +18,8 @@ import com.example.rachasevo.mapper.UriMapper
 import com.example.rachasevo.ui.listado.EditCounter
 import com.example.rachasevo.ui.listado.ListadoFragment
 import com.example.rachasevo.ui.viewItem.ViewItem
+import com.squareup.picasso.Picasso
+import java.io.File
 
 class Adaptador(lista:MutableList<Item>, counterEdit: EditCounter, fragmento: ListadoFragment): RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
@@ -69,7 +75,8 @@ class Adaptador(lista:MutableList<Item>, counterEdit: EditCounter, fragmento: Li
 
         Log.i("info",items[i].imagen)
         if(items[i].imagen !=""){
-            holder.imagen.setImageURI(UriMapper.stringToUri(items[i].imagen))
+
+            cargarImagen(UriMapper.stringToUri(items[i].imagen),holder.imagen)
         }else{
             holder.imagen.setImageResource(R.drawable.ic_launcher_foreground)
         }
@@ -77,5 +84,12 @@ class Adaptador(lista:MutableList<Item>, counterEdit: EditCounter, fragmento: Li
 
     override fun getItemCount():Int = items.size
 
+    private fun cargarImagen(imageUri: Uri, imagen:ImageView){
+        Log.i("imagen","cargando imagen")
+        val uri = imageUri
+        val imageStream = fragment.activity?.contentResolver?.openInputStream(imageUri);
+        val selectedImage = BitmapFactory.decodeStream(imageStream);
+        imagen.setImageBitmap(selectedImage);
+    }
 
 }

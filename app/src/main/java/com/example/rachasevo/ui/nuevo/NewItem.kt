@@ -1,24 +1,25 @@
 package com.example.rachasevo.ui.nuevo
 
+import android.Manifest.permission.*
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.room.Room
-import com.example.rachasevo.Intercambio
 import com.example.rachasevo.R
 import com.example.rachasevo.baseDeDatos.BaseDeDatos
 import com.example.rachasevo.baseDeDatos.model.Item
 import com.example.rachasevo.databinding.FragmentNewItemBinding
 import com.example.rachasevo.mapper.UriMapper
-import com.example.rachasevo.ui.viewItem.ViewItem
-
-lateinit var binding:FragmentNewItemBinding
 
 /**
  * A simple [Fragment] subclass.
@@ -27,8 +28,9 @@ lateinit var binding:FragmentNewItemBinding
  */
 class NewItem : Fragment() {
 
+    lateinit var binding:FragmentNewItemBinding
     private var imageUri:Uri = Uri.EMPTY
-    private val REQUEST_CODE = 3
+    private val REQUEST_CODE =200
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,7 @@ class NewItem : Fragment() {
 
     private fun onClick(){
         binding.createNewItem.setOnClickListener{ createItem() }
-        binding.newImagen.setOnClickListener{ openGallery() }
+        binding.newImagen.setOnClickListener{ requestPermission() }
     }
 
     private fun createItem(){
@@ -78,6 +80,10 @@ class NewItem : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK && data != null){
+            activity?.contentResolver?.takePersistableUriPermission(
+                data.data!!,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            )
             imageUri = data.data!!
             binding.newImagen.setImageURI(imageUri)
         }
@@ -91,4 +97,24 @@ class NewItem : Fragment() {
             binding.newImagen.setImageResource(R.drawable.ic_image_search)
         }
     }
+
+    private fun checkPermissions():Boolean{
+        val read = activity?.let { ContextCompat.checkSelfPermission(it,READ_EXTERNAL_STORAGE) }
+
+        return read == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestPermission(){
+        if(checkPermissions()){
+            Log.i("info","concedido")
+            openGallery()
+        }else{
+            Log.i("info","no concedido")
+            request()
+        }
+    }
+
+    private fun request() =
+        activity?.let { ActivityCompat.requestPermissions(it, arrayOf(READ_EXTERNAL_STORAGE),REQUEST_CODE) }
+
 }

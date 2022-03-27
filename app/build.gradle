@@ -57,4 +57,7 @@ dependencies {
     implementation "androidx.room:room-ktx:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
+    // https://mvnrepository.com/artifact/com.squareup.picasso/picasso
+    implementation group: 'com.squareup.picasso', name: 'picasso', version: '2.71828'
+
 }
