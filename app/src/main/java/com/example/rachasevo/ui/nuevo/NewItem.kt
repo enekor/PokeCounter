@@ -47,6 +47,7 @@ class NewItem : Fragment() {
         binding = FragmentNewItemBinding.inflate(inflater,container,false)
         binding.newImagen.setImageResource(R.drawable.ic_image_search)
 
+        Intercambio.imageString = ""
         onClick()
 
         return binding.root

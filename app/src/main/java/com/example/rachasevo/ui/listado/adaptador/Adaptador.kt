@@ -84,12 +84,7 @@ class Adaptador(lista:MutableList<Item>, counterEdit: EditCounter, fragmento: Li
 
     override fun getItemCount():Int = items.size
 
-    private fun cargarImagen(imageUri: Uri, imagen:ImageView){
-        Log.i("imagen","cargando imagen")
-        val uri = imageUri
-        val imageStream = fragment.activity?.contentResolver?.openInputStream(imageUri);
-        val selectedImage = BitmapFactory.decodeStream(imageStream);
-        imagen.setImageBitmap(selectedImage);
-    }
+    private fun cargarImagen(imageUri: Uri, imagen:ImageView) =
+        Picasso.get().load(imageUri).into(imagen)
 
 }

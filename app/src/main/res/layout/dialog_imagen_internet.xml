@@ -17,17 +17,17 @@
             android:orientation="horizontal" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:gravity="center"
             app:layout_constraintTop_toBottomOf="@+id/textView2" android:id="@+id/radioGroup"
-            android:layout_marginTop="40dp">
+    >
         <RadioButton
                 android:text="Via url de internet"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/viaLink" android:layout_marginEnd="25dp"
-                android:layout_marginStart="15dp"/>
+                android:layout_height="wrap_content" android:id="@+id/viaLink" android:layout_marginEnd="2dp"
+        />
         <RadioButton
                 android:text="pokeapi (not yet)"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/viaAPI" android:layout_marginStart="25dp"
-                android:layout_marginEnd="15dp" android:focusable="false" android:clickable="false"/>
+                android:layout_height="wrap_content" android:id="@+id/viaAPI"
+                android:focusable="false" android:clickable="false"/>
     </RadioGroup>
     <EditText
             android:layout_width="0dp"
@@ -35,13 +35,28 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/imageResourceText"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" android:hint="URL imagen"
-            android:layout_marginTop="25dp" android:minHeight="48dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="URL imagen"
+            android:minHeight="48dp" app:layout_constraintEnd_toStartOf="@+id/previewImageButton"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
     <Button
-            android:text="Button"
+            android:text="Guardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/previewNewImage"
+            app:layout_constraintTop_toTopOf="@+id/previewNewImage"
+            app:layout_constraintBottom_toBottomOf="@+id/previewNewImage"/>
+    <ImageView
+            android:layout_width="143dp"
+            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/previewNewImage"
             app:layout_constraintTop_toBottomOf="@+id/imageResourceText" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="25dp"/>
+    />
+    <Button
+            android:text="Preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/previewImageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" android:backgroundTint="#0FFFFFFF"
+            android:textColor="#1C9A77"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
