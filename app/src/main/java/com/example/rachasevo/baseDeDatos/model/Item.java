@@ -21,6 +21,8 @@ public class Item {
         this.internet = internet;
     }
 
+    public Item(){}
+
     public int getId() {
         return id;
     }

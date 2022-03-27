@@ -9,4 +9,5 @@ object Intercambio {
     var item = Item("","",0,false)
     var fragmentHolder:ViewNewFragmentHolder? = null
     var fragento:Fragment? = null
+    var imageString = ""
 }

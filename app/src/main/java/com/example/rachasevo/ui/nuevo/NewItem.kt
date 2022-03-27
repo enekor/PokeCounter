@@ -2,6 +2,7 @@ package com.example.rachasevo.ui.nuevo
 
 import android.Manifest.permission.*
 import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -15,11 +16,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.room.Room
+import com.example.rachasevo.Intercambio
 import com.example.rachasevo.R
 import com.example.rachasevo.baseDeDatos.BaseDeDatos
 import com.example.rachasevo.baseDeDatos.model.Item
 import com.example.rachasevo.databinding.FragmentNewItemBinding
 import com.example.rachasevo.mapper.UriMapper
+import com.example.rachasevo.ui.nuevo.imagenDesdeInternet.ImagenInternet
+import com.squareup.picasso.Picasso
 
 /**
  * A simple [Fragment] subclass.
@@ -50,12 +54,17 @@ class NewItem : Fragment() {
 
     private fun onClick(){
         binding.createNewItem.setOnClickListener{ createItem() }
-        binding.newImagen.setOnClickListener{ requestPermission() }
+        binding.newImagen.setOnClickListener{ eleccionDeTipoDeImagen() }
     }
 
     private fun createItem(){
-        if(binding.newNombreItem.text.toString()!=""){
-            val item = Item(binding.newNombreItem.text.toString(),getImage(),0, imageUri != Uri.EMPTY)
+        if(binding.newNombreItem.text.toString()!="" && (Intercambio.imageString != "" || imageUri != Uri.EMPTY)){
+            val item = Item()
+            item.imagen = if(imageUri != Uri.EMPTY) UriMapper.uriToString(imageUri) else Intercambio.imageString
+            item.nombre = binding.newNombreItem.text.toString()
+            item.contador = 0
+            item.isInternet = imageUri != Uri.EMPTY
+
             val db = activity?.let { it1 -> Room.databaseBuilder(it1,BaseDeDatos::class.java,"listas").allowMainThreadQueries().build() }!!
 
             db.itemDao().insertItem(item)
@@ -64,7 +73,7 @@ class NewItem : Fragment() {
 
             activity!!.onBackPressed()
         }else{
-            Toast.makeText(activity, "No se puede guardar un elemento sin nombre", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "No se puede guardar un elemento sin nombre y/o imagen", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -117,4 +126,25 @@ class NewItem : Fragment() {
     private fun request() =
         activity?.let { ActivityCompat.requestPermissions(it, arrayOf(READ_EXTERNAL_STORAGE),REQUEST_CODE) }
 
+    private fun eleccionDeTipoDeImagen(){
+        val dialog = AlertDialog.Builder(activity)
+            .setMessage("Como desea escoger la imagen?")
+            .setNegativeButton("Local") { view, _ ->
+                requestPermission()
+                view.dismiss()
+            }
+            .setPositiveButton("Internet") { view, _ ->
+                imagenDesdeInternet()
+                view.dismiss()
+            }
+            .setCancelable(false)
+            .create()
+
+        dialog.show()
+    }
+
+    private fun imagenDesdeInternet(){
+        val imagenInternet = activity?.let { ImagenInternet(it,binding.newImagen) }
+        activity?.supportFragmentManager?.let { imagenInternet?.show(it,"internet") }
+    }
 }
