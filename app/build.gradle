@@ -59,5 +59,11 @@ dependencies {
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.3'
     // https://mvnrepository.com/artifact/com.squareup.picasso/picasso
     implementation group: 'com.squareup.picasso', name: 'picasso', version: '2.71828'
-
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-gson
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor
+    implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '3.12.1'
+    implementation 'com.beust:klaxon:5.5'
 }
