@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
-    private const val URL = "https://pokeapi.co/api/v2/pokemon"
+    private const val URL = "https://pokeapi.co/api/v2/pokemon/"
 
     fun getClient(): Retrofit? {
         val loggingInterceptor = HttpLoggingInterceptor()

@@ -1,6 +1,7 @@
 package com.example.rachasevo.rest
 
 import android.util.Log
+import com.example.rachasevo.Intercambio
 import com.example.rachasevo.rest.config.Api
 import com.example.rachasevo.rest.config.ApiConfig
 import com.example.rachasevo.rest.model.Pokemon
@@ -12,31 +13,35 @@ class GetImageFromApi {
 
     val api = ApiConfig.getClient()?.create(Api::class.java)
 
-    fun getPokemon(nombre:String):List<String>{
+    fun getPokemon(nombre:String){
 
+        Log.i("retrofit","entrando")
         val call = api?.getPokemon(nombre)
         lateinit var pokemon:Pokemon
 
         call?.enqueue(object : Callback<Pokemon> {
-            override fun onFailure(call: Call<Pokemon>?, t: Throwable?) {
-                Log.v("retrofit", "call failed")
+            override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                Log.i("retrofit", "call failed")
             }
 
-            override fun onResponse(call: Call<Pokemon>?, response: Response<Pokemon>?) {
-                pokemon = response?.body()!!
+            override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
+                Log.i("retrofit","succeed")
+                pokemon = response.body()!!
+
+                setLista(pokemon)
+
             }
         })
 
-        return setImages(pokemon)
     }
 
-    private fun setImages(pokemon:Pokemon):MutableList<String>{
+    private fun setLista(pokemon: Pokemon) {
         val lista = mutableListOf<String>()
         val sprites = pokemon.sprites.other?.home
 
-        sprites?.frontDefault?.let { lista.add(it) }
-        sprites?.frontShiny?.let { lista.add(it) }
+        sprites?.front_default?.let { lista.add(it) }
+        sprites?.front_shiny?.let { lista.add(it) }
 
-        return lista
+        Intercambio.pokelist = lista
     }
 }

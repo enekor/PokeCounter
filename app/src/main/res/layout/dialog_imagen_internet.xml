@@ -27,7 +27,7 @@
                 android:text="pokeapi (not yet)"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/viaAPI"
-                android:focusable="false" android:clickable="false"/>
+                android:focusable="true" android:clickable="true"/>
     </RadioGroup>
     <EditText
             android:layout_width="0dp"
@@ -36,7 +36,7 @@
             android:ems="10"
             android:id="@+id/imageResourceText"
             app:layout_constraintStart_toStartOf="parent"
-            android:hint="URL imagen"
+            android:hint="Seleccione una opcion"
             android:minHeight="48dp" app:layout_constraintEnd_toStartOf="@+id/previewImageButton"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
     <Button
@@ -52,6 +52,16 @@
             android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/previewNewImage"
             app:layout_constraintTop_toBottomOf="@+id/imageResourceText" app:layout_constraintStart_toStartOf="parent"
     />
+    <ImageView
+            android:layout_width="143dp"
+            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonNormal"
+            app:layout_constraintTop_toBottomOf="@+id/previewNewImage"
+            app:layout_constraintStart_toStartOf="@+id/previewNewImage"/>
+    <ImageView
+            android:layout_width="143dp"
+            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonShiny"
+            app:layout_constraintTop_toBottomOf="@+id/previewNewImage" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/pokemonNormal"/>
     <Button
             android:text="Preview"
             android:layout_width="wrap_content"

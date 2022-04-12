@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface Api {
-    @GET("/{name}")
+    @GET("{name}")
     fun getPokemon(@Path("name") nombrePokemon:String): Call<Pokemon>
 }

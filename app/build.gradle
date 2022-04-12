@@ -14,7 +14,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.4 en tu culo mi aparato"
+        versionName "2.5 por el culo te la hinco"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

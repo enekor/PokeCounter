@@ -8,7 +8,7 @@ import com.beust.klaxon.*
 private val klaxon = Klaxon()
 
 data class Pokemon (
-    val abilities: List<Ability>,
+    /*val abilities: List<Ability>,
 
     @Json(name = "base_experience")
     val baseExperience: Long,
@@ -38,11 +38,11 @@ data class Pokemon (
     @Json(name = "past_types")
     val pastTypes: List<Any?>,
 
-    val species: Species,
+    val species: Species,*/
     val sprites: Sprites,
-    val stats: List<Stat>,
+    /*val stats: List<Stat>,
     val types: List<Type>,
-    val weight: Long
+    val weight: Long*/
 ) {
     public fun toJson() = klaxon.toJsonString(this)
 
@@ -257,16 +257,16 @@ data class Emerald (
 
 data class Home (
     @Json(name = "front_default")
-    val frontDefault: String,
+    val front_default: String,
 
     @Json(name = "front_female")
-    val frontFemale: Any? = null,
+    val front_female: Any? = null,
 
     @Json(name = "front_shiny")
-    val frontShiny: String,
+    val front_shiny: String,
 
     @Json(name = "front_shiny_female")
-    val frontShinyFemale: Any? = null
+    val front_shiny_female: Any? = null
 )
 
 data class GenerationVii (

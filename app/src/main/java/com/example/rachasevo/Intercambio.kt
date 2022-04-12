@@ -10,4 +10,5 @@ object Intercambio {
     var fragmentHolder:ViewNewFragmentHolder? = null
     var fragento:Fragment? = null
     var imageString = ""
+    var pokelist:MutableList<String> = mutableListOf()
 }
