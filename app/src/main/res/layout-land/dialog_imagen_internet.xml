@@ -48,18 +48,18 @@
             app:layout_constraintTop_toTopOf="@+id/previewNewImage"
             app:layout_constraintBottom_toBottomOf="@+id/previewNewImage"/>
     <ImageView
-            android:layout_width="143dp"
-            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/previewNewImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/previewNewImage"
             app:layout_constraintTop_toBottomOf="@+id/imageResourceText" app:layout_constraintStart_toStartOf="parent"
     />
     <ImageView
-            android:layout_width="143dp"
-            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonNormal"
+            android:layout_width="100dp"
+            android:layout_height="100dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonNormal"
             app:layout_constraintTop_toBottomOf="@+id/previewNewImage"
             app:layout_constraintStart_toStartOf="@+id/previewNewImage"/>
     <ImageView
-            android:layout_width="143dp"
-            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonShiny"
+            android:layout_width="100dp"
+            android:layout_height="100dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonShiny"
             app:layout_constraintTop_toBottomOf="@+id/previewNewImage" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/pokemonNormal"
             app:layout_constraintStart_toEndOf="@+id/pokemonNormal" android:layout_marginStart="5dp"/>

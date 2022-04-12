@@ -38,6 +38,7 @@ class ImagenInternet(contexto:Context, imageView:ImageView):DialogFragment() {
         binding.button.isGone = true
         binding.pokemonNormal.isGone = true
         binding.pokemonShiny.isGone = true
+        binding.viaLink.isChecked = true
 
         onClick()
 
@@ -79,6 +80,7 @@ class ImagenInternet(contexto:Context, imageView:ImageView):DialogFragment() {
                         val pokelist = Intercambio.pokelist
                         Log.i("visible","dentro")
                         if(!pokelist.isEmpty()){
+
                             binding.pokemonNormal.isGone = !binding.pokemonNormal.isGone
                             binding.pokemonShiny.isGone = !binding.pokemonShiny.isGone
 

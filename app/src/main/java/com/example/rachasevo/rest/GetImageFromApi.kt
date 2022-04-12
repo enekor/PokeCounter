@@ -17,7 +17,7 @@ class GetImageFromApi {
 
         Log.i("retrofit","entrando")
         val call = api?.getPokemon(nombre)
-        lateinit var pokemon:Pokemon
+        var pokemon:Pokemon?
 
         call?.enqueue(object : Callback<Pokemon> {
             override fun onFailure(call: Call<Pokemon>, t: Throwable) {
@@ -26,9 +26,9 @@ class GetImageFromApi {
 
             override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
                 Log.i("retrofit","succeed")
-                pokemon = response.body()!!
+                pokemon = response.body()
 
-                setLista(pokemon)
+                pokemon?.let { setLista(it) }
 
             }
         })
