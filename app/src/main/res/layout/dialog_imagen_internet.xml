@@ -1,73 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="wrap_content"
-                                                   android:layout_height="wrap_content" android:padding="25dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="50dp">
 
     <TextView
-            android:text="Internet"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" android:id="@+id/textView2"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:textSize="30dp" android:gravity="center"/>
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Internet"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <RadioGroup
-            android:layout_width="fill_parent"
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+        <RadioButton
+            android:id="@+id/viaLink"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" android:id="@+id/radioGroup"
-    >
+            android:layout_marginEnd="30dp"
+            android:text="URI / Link" />
+
         <RadioButton
-                android:text="URI / Link"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/viaLink" android:layout_marginEnd="2dp"
-        />
-        <RadioButton
-                android:text="pokeapi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/viaAPI"
-                android:focusable="true" android:clickable="true"/>
+            android:id="@+id/viaAPI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="pokeapi" />
     </RadioGroup>
+
     <EditText
-            android:layout_width="0dp"
+        android:id="@+id/imageResourceText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Seleccione una opcion"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/imageResourceText"
+        app:layout_constraintStart_toStartOf="@+id/imageResourceText"
+        app:layout_constraintTop_toBottomOf="@+id/imageResourceText">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/previewImageButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:ems="10"
-            android:id="@+id/imageResourceText"
-            app:layout_constraintStart_toStartOf="parent"
-            android:hint="Seleccione una opcion"
-            android:minHeight="48dp" app:layout_constraintEnd_toStartOf="@+id/previewImageButton"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup"/>
-    <Button
-            android:text="Guardar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/previewNewImage"
-            app:layout_constraintTop_toTopOf="@+id/previewNewImage"
-            app:layout_constraintBottom_toBottomOf="@+id/previewNewImage"/>
-    <ImageView
-            android:layout_width="143dp"
-            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/previewNewImage"
-            app:layout_constraintTop_toBottomOf="@+id/imageResourceText" app:layout_constraintStart_toStartOf="parent"
-    />
-    <ImageView
-            android:layout_width="143dp"
-            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonNormal"
-            app:layout_constraintTop_toBottomOf="@+id/previewNewImage"
-            app:layout_constraintStart_toStartOf="@+id/previewNewImage"/>
-    <ImageView
-            android:layout_width="143dp"
-            android:layout_height="139dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/pokemonShiny"
-            app:layout_constraintTop_toBottomOf="@+id/previewNewImage" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/pokemonNormal"
-            app:layout_constraintStart_toEndOf="@+id/pokemonNormal" android:layout_marginStart="5dp"/>
-    <Button
+            android:backgroundTint="#0FFFFFFF"
             android:text="Preview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/previewImageButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" android:backgroundTint="#0FFFFFFF"
-            android:textColor="#1C9A77"/>
+            android:textColor="#1C9A77" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="fill_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/pokemonShiny"
+            android:layout_width="143dp"
+            android:layout_height="139dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/pokemonNormal"
+            android:layout_width="143dp"
+            android:layout_height="139dp"
+            android:layout_marginStart="7dp"
+            tools:srcCompat="@tools:sample/avatars" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/previewNewImage"
+        android:layout_width="143dp"
+        android:layout_height="139dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
