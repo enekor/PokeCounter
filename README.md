@@ -20,7 +20,7 @@ PokeCounter es una aplicación Android que te permite llevar un registro de tus 
   - PokeCounter es una aplicación ligera que funciona en dispositivos con Android 4.4 o superior.
 
 ## ¿Cómo usar PokeCounter?
-1. Descarga e instala PokeCounter desde [Release]("https://github.com/enekor/PokeCounter/release/latest").
+1. Descarga e instala PokeCounter desde [la pagina de release](https://github.com/enekor/PokeCounter/releases/latest).
 
 1. Abre la aplicación y selecciona una imagen para tu contador. Puedes elegir entre diferentes opciones:
 - Local
